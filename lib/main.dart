@@ -58,9 +58,9 @@ class _MyHomePageState extends State<MyHomePage> {
 
       try {
          final int level = await platform.invokeMethod("getBatteryLevel");
-         batteryLevel = "Battery level: '$level'%.";
+         batteryLevel = "Battery level: $level %.";
       } on PlatformException catch(e) {
-         batteryLevel = "Failed to get the battery level: '${e.message}'.";
+         batteryLevel = "Failed to get the battery level: ${e.message}.";
       }
 
       setState(() {
@@ -86,11 +86,15 @@ class _MyHomePageState extends State<MyHomePage> {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
           children: <Widget>[
-            RaisedButton(
-              child: Text("Get battery button"),
-              onPressed: _getBatteryLevel,
+            Container(
+              padding: const EdgeInsets.all(32.0),
+              child: RaisedButton(
+                child: Text("Get battery button", style: TextStyle(fontSize: 24),),
+                elevation: 12.0,
+                onPressed: _getBatteryLevel,
+              ),
             ),
-            Text(_batteryLevel),
+            Text(_batteryLevel, style: TextStyle(fontSize: 24),),
           ],
         ),
       ),
